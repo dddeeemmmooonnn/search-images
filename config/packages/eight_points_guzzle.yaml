@@ -1,0 +1,21 @@
+eight_points_guzzle:
+    clients:
+        bing_client:
+            # Write here the host where to do requests
+            base_url: "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
+
+            # Request options: http://docs.guzzlephp.org/en/stable/request-options.html
+            options:
+                # timeout in seconds
+                timeout: 30
+
+                # set to false to disable throwing exceptions on an HTTP protocol errors (4xx and 5xx responses)
+                http_errors: true
+
+                # each key is the name of a header, and each value is a string or array of strings representing the
+                # header field values.
+                headers:
+                    User-Agent: "EightPointsGuzzleBundle/v7"
+                    Ocp-Apim-Subscription-Key: "cb4d6c8c2af947dea69bb263cf6cff7d"
+
+            plugin: ~

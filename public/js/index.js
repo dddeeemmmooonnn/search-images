@@ -12,7 +12,7 @@ $(document).ready( function() {
   });
   
   $("#tags").on("click", ".close", function() {
-    $(this).parent("span").fadeOut(100);
+    $(this).parent("span").remove();
   });
   
   $(".colors li").click(function() {
@@ -20,5 +20,32 @@ $(document).ready( function() {
     $(".tag").css("background-color",c);
     $("#title").css("color",c);
   });
-  
+
+  $("#search-btn").click(function () {
+    var query = $.map($('.tag'), function (el) { return el.innerText; });
+    var postData = {
+        tags: query
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/search",
+        data: JSON.stringify(postData),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            data = data['images'];
+            var memosDiv = $('#memos-images')[0];
+            memosDiv.innerHTML = '';
+            for (var i = 0; i < data.length; i++) {
+                memosDiv.append(
+                    $(`<div class="col-3 result-image mb-1" style="background-image: url(${data[i]})"></div>`)[0]
+                )
+            }
+        },
+        error: function(msg) {
+            console.error(msg)
+        }
+    });
+  });
 });
