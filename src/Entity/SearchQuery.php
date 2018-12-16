@@ -19,21 +19,38 @@ class SearchQuery
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $query;
+    private $tag;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image_url;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getQuery(): ?string
+    public function getTag(): ?string
     {
-        return $this->query;
+        return $this->tag;
     }
 
-    public function setQuery(string $query): self
+    public function setTag(string $tag): self
     {
-        $this->query = $query;
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->image_url;
+    }
+
+    public function setImageUrl(string $image_url): self
+    {
+        $this->image_url = $image_url;
 
         return $this;
     }
